@@ -8,18 +8,22 @@
   zlib,
   gitMinimal,
 }:
+let
+  # Preview version from pkg.pr.new/@biomejs/biome@f50723b
+  previewRef = "f50723b";
+in
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "biome";
-  version = "2.3.9";
+  version = "2.3.11";
 
   src = fetchFromGitHub {
     owner = "biomejs";
     repo = "biome";
-    rev = "@biomejs/biome@${finalAttrs.version}";
-    hash = "sha256-2eW60IoEeh3pnnsnZLdS6paw0f6vf+2LBM95WyOKDwc=";
+    rev = previewRef;
+    hash = "sha256-s6zl2gnDh2541OEip8mylLOZUpIOttmNigMmtsyVCzM=";
   };
 
-  cargoHash = "sha256-WSl/OObiOXx4MJcnGQtvGVfM2i5k8lLIQoPy9s+GT/U=";
+  cargoHash = "sha256-oPlcEIAvUXLhowkBzJPUa8r/TzCGRxwL55fBO8Vdfp4=";
 
   nativeBuildInputs = [ pkg-config ];
 
@@ -60,7 +64,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     description = "Toolchain of the web";
     homepage = "https://biomejs.dev/";
-    changelog = "https://github.com/biomejs/biome/blob/${finalAttrs.src.rev}/CHANGELOG.md";
+    changelog = "https://github.com/biomejs/biome/blob/${previewRef}/CHANGELOG.md";
     license = lib.licenses.mit;
     maintainers = with lib.maintainers; [
       isabelroses
